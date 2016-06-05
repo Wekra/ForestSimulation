@@ -5,16 +5,18 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
 public class Controller {
 
-    Scene scene;
+    private Scene scene;
 
     public Controller(Scene scene){
         this.scene = scene;
@@ -59,9 +61,32 @@ public class Controller {
 
         if(e.getCode() == KeyCode.SPACE){
             System.out.println("Leertaste");
+            Group group = (Group) scene.getRoot();
+            group.getChildren().add(createTree());
         }
 
 
 
+    }
+
+    private Group createTree(){
+
+        Image tree = new Image("birch.png");
+
+        Rectangle rect1 = new Rectangle(100,200);
+        rect1.setFill(new ImagePattern(tree));
+        Rectangle rect2 = new Rectangle(100,200);
+        rect2.setFill(new ImagePattern(tree));
+        rect2.setRotationAxis(Rotate.Y_AXIS);
+        rect2.setRotate(60);
+        Rectangle rect3 = new Rectangle(100,200);
+        rect3.setFill(new ImagePattern(tree));
+        rect3.setRotationAxis(Rotate.Y_AXIS);
+        rect3.setRotate(120);
+
+        Group newTree = new Group(rect1, rect2, rect3);
+        newTree.setTranslateY(scene.getHeight() * Math.random());
+        newTree.setTranslateX(scene.getWidth()* Math.random());
+        return newTree;
     }
 }
