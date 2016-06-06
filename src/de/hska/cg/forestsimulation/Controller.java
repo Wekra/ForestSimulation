@@ -1,4 +1,4 @@
-package de.wernet.forestsimulation;
+package de.hska.cg.forestsimulation;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Group;

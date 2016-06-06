@@ -1,4 +1,4 @@
-package de.wernet.forestsimulation;
+package de.hska.cg.forestsimulation;
 
 import javafx.application.Application;
 import javafx.application.ConditionalFeature;

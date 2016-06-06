@@ -1,4 +1,4 @@
-package de.wernet.forestsimulation;
+package de.hska.cg.forestsimulation;
 
 /**
  * Created by Christian on 05.06.2016.
