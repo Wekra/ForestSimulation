@@ -24,27 +24,40 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         if (!Platform.isSupported(ConditionalFeature.SCENE3D)) {
             throw new RuntimeException("ERROR: common conditional SCENE3D is not supported");
         }
 
         // Near
-/*
+
         Button button = new Button("Display Rectangles");
         button.addEventHandler(MouseEvent.MOUSE_CLICKED, (mouseEvent) -> controller.buttonClicked());
         button.setFocusTraversable(false);
 
-        final Box floor = new Box(200, 200, 1);
-        floor.setTranslateX(200);
-        floor.setTranslateY(200);
-        floor.setTranslateZ(50);
-        floor.setMaterial(new PhongMaterial(Color.SANDYBROWN));
-*/
+//        final Box floor = new Box(200, 200, 1);
+//        floor.setTranslateX(200);
+//        floor.setTranslateY(200);
+//        floor.setTranslateZ(50);
+//        floor.setMaterial(new PhongMaterial(Color.SANDYBROWN));
+
+
+        PhongMaterial material = new PhongMaterial(Color.GREEN);
+
+        Box floor2 = new Box(200, 0.1, 200);
+        floor2.setMaterial(material);
+//        floor2.setTranslateX(220);
+        floor2.setTranslateY(200);
+//        floor2.setTranslateZ(60);
+
+        PointLight light = new PointLight(Color.WHITE);
+        light.setTranslateX(0.0);
+        light.setTranslateY(-400.0);
+        light.setTranslateZ(-300.0);
 
         primaryStage.setTitle("Forest Simulation");
 
-//        Group root = new Group(floor, button);
+        Group root = new Group(floor2, light);
 
         Scene scene = new Scene(root, 600, 600);
 
@@ -54,7 +67,7 @@ public class Main extends Application {
         scene.setOnKeyReleased(e -> controller.addTree(e));
 
 
-        scene.setCamera(new PerspectiveCamera());
+//        scene.setCamera(new PerspectiveCamera());
         primaryStage.setScene(scene);
 
         primaryStage.show();

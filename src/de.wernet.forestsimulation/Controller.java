@@ -30,9 +30,9 @@ public class Controller {
     private double mouseXDelta;
     private double mouseYDelta;
 
-    private Rotate cameraRotateX = new Rotate(0.0, Rotate.X_AXIS);
-    private Rotate cameraRotateY = new Rotate(45.0, Rotate.Y_AXIS);
-    private Translate cameraTranslate = new Translate(0.0, -150.0, -700.0);
+    private Rotate cameraRotateX = new Rotate(-20.0, Rotate.X_AXIS);
+    private Rotate cameraRotateY = new Rotate(-20.0, Rotate.Y_AXIS);
+    private Translate cameraTranslate = new Translate(100.0, 100.0, -500.0);
 
     public Controller(Scene scene){
         this.scene = scene;
@@ -84,9 +84,6 @@ public class Controller {
             Group group = (Group) scene.getRoot();
             group.getChildren().add(createTree());
         }
-
-
-
     }
 
     private Group createTree(){
@@ -95,6 +92,8 @@ public class Controller {
 
         Rectangle rect1 = new Rectangle(100,200);
         rect1.setFill(new ImagePattern(tree));
+        rect1.setRotationAxis(Rotate.Y_AXIS);
+        rect1.setRotate(0.01);
         Rectangle rect2 = new Rectangle(100,200);
         rect2.setFill(new ImagePattern(tree));
         rect2.setRotationAxis(Rotate.Y_AXIS);
@@ -105,18 +104,18 @@ public class Controller {
         rect3.setRotate(120);
 
         Group newTree = new Group(rect1, rect2, rect3);
-        newTree.setTranslateY(scene.getHeight() * Math.random());
-        newTree.setTranslateX(scene.getWidth()* Math.random());
+        newTree.setTranslateZ((200 * Math.random()) - 100);
+        newTree.setTranslateX((200 * Math.random()) - 100);
         return newTree;
     }
 
     private final Camera setUpCamera() {
         PerspectiveCamera camera = new PerspectiveCamera(true);
 
-        camera.setFieldOfView(40.0);
+        camera.setFieldOfView(105.0);
         camera.setFarClip(10000.0);
         camera.setRotationAxis(Rotate.Z_AXIS);
-        camera.setRotate(180.0);
+        camera.setRotate(0);
         camera.getTransforms().addAll(cameraRotateY, cameraRotateX,
                 cameraTranslate);
 
@@ -170,13 +169,3 @@ public class Controller {
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
