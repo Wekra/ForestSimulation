@@ -24,14 +24,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         if (!Platform.isSupported(ConditionalFeature.SCENE3D)) {
             throw new RuntimeException("ERROR: common conditional SCENE3D is not supported");
         }
 
         // Near
+/*
         Button button = new Button("Display Rectangles");
-        button.addEventHandler(MouseEvent.MOUSE_CLICKED, (mouseEvent)->controller.buttonClicked());
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, (mouseEvent) -> controller.buttonClicked());
         button.setFocusTraversable(false);
 
         final Box floor = new Box(200, 200, 1);
@@ -39,10 +40,11 @@ public class Main extends Application {
         floor.setTranslateY(200);
         floor.setTranslateZ(50);
         floor.setMaterial(new PhongMaterial(Color.SANDYBROWN));
+*/
 
         primaryStage.setTitle("Forest Simulation");
 
-        Group root = new Group(floor, button);
+//        Group root = new Group(floor, button);
 
         Scene scene = new Scene(root, 600, 600);
 
