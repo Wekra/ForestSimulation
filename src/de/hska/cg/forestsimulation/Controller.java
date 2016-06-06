@@ -22,6 +22,7 @@ public class Controller {
     private Scene scene;
     
     private SceneCamera camera;
+    private ObjectCollection objects;
 
     private static final double ROTATE_TICK = 10.0;
 
@@ -42,9 +43,12 @@ public class Controller {
         this.cameraRotateX = camera.getCameraRotateX();
         this.cameraRotateY = camera.getCameraRotateY();
         this.cameraTranslate = camera.getCameraTranslate();
+        this.objects = new ObjectCollection();
 
-        addKeyHandlers();
+        addKeyPressedHandlers();
+        addKeyReleasedHandlers();
         addMouseHandlers();
+        
     }
 
 
@@ -82,50 +86,33 @@ public class Controller {
 //        group.getChildren().addAll(rotationGroup, s);
 //    }
 
-//    public void addTree(KeyEvent e) {
-//
-//        if(e.getCode() == KeyCode.SPACE){
-//            System.out.println("Leertaste");
-//            Group group = (Group) scene.getRoot();
-//            group.getChildren().add(createTree());
-//        }
-//    }
+    
+    private Group createTree(){
 
-//    private Group createTree(){
-//
-//        Image tree = new Image("birch.png");
-//
-//        Rectangle rect1 = new Rectangle(100,200);
-//        rect1.setFill(new ImagePattern(tree));
-//        Rectangle rect2 = new Rectangle(100,200);
-//        rect2.setFill(new ImagePattern(tree));
-//        rect2.setRotationAxis(Rotate.Y_AXIS);
-//        rect2.setRotate(60);
-//        Rectangle rect3 = new Rectangle(100,200);
-//        rect3.setFill(new ImagePattern(tree));
-//        rect3.setRotationAxis(Rotate.Y_AXIS);
-//        rect3.setRotate(120);
-//
-//        Group newTree = new Group(rect1, rect2, rect3);
-//        newTree.setTranslateY(scene.getHeight() * Math.random());
-//        newTree.setTranslateX(scene.getWidth()* Math.random());
-//        return newTree;
-//    }
-
-//    private final Camera setUpCamera() {
-//        PerspectiveCamera camera = new PerspectiveCamera(true);
-//
-//        camera.setFieldOfView(105.0);
-//        camera.setFarClip(10000.0);
-////        camera.setRotationAxis(Rotate.Z_AXIS);
-////        camera.setRotate(0);
-//        camera.getTransforms().addAll(cameraRotateY, cameraRotateX,
-//                cameraTranslate);
-//
-//        return camera;
-//    }
-
-    private final void addKeyHandlers() {
+    	Group tree = objects.treeBirch();
+    	tree.setTranslateZ(200 * Math.random());
+        tree.setTranslateX(200 * Math.random());
+        return tree;
+    }
+    
+    public void addKeyReleasedHandlers() {
+    	Group group = (Group) scene.getRoot();
+    	scene.setOnKeyReleased(e -> {
+    		switch(e.getCode()){
+    		case SPACE: 
+    			System.out.println("Leertaste");
+                group.getChildren().add(createTree());
+                break;
+    		case COMMA: 
+    			System.out.println("comma");
+                group.getChildren().add(objects.box());
+            default:
+    		}
+    	});
+            
+    }
+    
+    private final void addKeyPressedHandlers() {
         scene.setOnKeyPressed(event -> {
             switch(event.getCode()) {
                 case RIGHT:
