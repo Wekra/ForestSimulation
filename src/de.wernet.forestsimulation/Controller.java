@@ -43,40 +43,44 @@ public class Controller {
     }
 
 
-    public void buttonClicked() {
-        Rectangle red = new Rectangle(300, 300, Color.RED);
-        red.setTranslateX(-50);
-        red.setTranslateY(-50);
-        red.setTranslateZ(1);
+//    public void buttonClicked() {
+//        Rectangle red = new Rectangle(300, 300, Color.RED);
+//        red.setTranslateX(-50);
+//        red.setTranslateY(-50);
+//        red.setTranslateZ(1);
+//
+//        // Far
+//        Rectangle green = new Rectangle(300, 300, Color.GREEN);
+//        green.setTranslateX(100);
+//        green.setTranslateY(0);
+//        green.setTranslateZ(200);
+//
+//        // Mid
+//        Rectangle blue = new Rectangle(300, 300, Color.BLUE);
+//        blue.setTranslateX(0);
+//        blue.setTranslateY(100);
+//        blue.setTranslateZ(100);
+//
+//        Group rotationGroup = new Group(red, green, blue);
+//        rotationGroup.setTranslateX(125);
+//        rotationGroup.setTranslateY(125);
+//        rotationGroup.setRotationAxis(Rotate.Y_AXIS);
+//
+//        Slider s = new Slider(0, 360, 0);
+//        s.setBlockIncrement(1);
+//        s.setTranslateX(225);
+//        s.setTranslateY(575);
+//        rotationGroup.rotateProperty().bind(s.valueProperty());
+//
+//        Parent parent = scene.getRoot();
+//        Group group = (Group) parent;
+//        group.getChildren().addAll(rotationGroup, s);
+//    }
 
-        // Far
-        Rectangle green = new Rectangle(300, 300, Color.GREEN);
-        green.setTranslateX(100);
-        green.setTranslateY(0);
-        green.setTranslateZ(200);
-
-        // Mid
-        Rectangle blue = new Rectangle(300, 300, Color.BLUE);
-        blue.setTranslateX(0);
-        blue.setTranslateY(100);
-        blue.setTranslateZ(100);
-
-        Group rotationGroup = new Group(red, green, blue);
-        rotationGroup.setTranslateX(125);
-        rotationGroup.setTranslateY(125);
-        rotationGroup.setRotationAxis(Rotate.Y_AXIS);
-
-        Slider s = new Slider(0, 360, 0);
-        s.setBlockIncrement(1);
-        s.setTranslateX(225);
-        s.setTranslateY(575);
-        rotationGroup.rotateProperty().bind(s.valueProperty());
-
-        Parent parent = scene.getRoot();
-        Group group = (Group) parent;
-        group.getChildren().addAll(rotationGroup, s);
-    }
-
+    /**
+     * React to a key event and add a new "tree" to the scene.
+     * @param e the KeyEvent to react to
+     */
     public void addTree(KeyEvent e) {
 
         if(e.getCode() == KeyCode.SPACE){
@@ -86,29 +90,37 @@ public class Controller {
         }
     }
 
+    /**
+     * This method creates a new "tree".
+     * @return a Group resembling a tree
+     */
     private Group createTree(){
 
         Image tree = new Image("birch.png");
 
-        Rectangle rect1 = new Rectangle(100,200);
+        Rectangle rect1 = new Rectangle(50,100);
         rect1.setFill(new ImagePattern(tree));
         rect1.setRotationAxis(Rotate.Y_AXIS);
         rect1.setRotate(0.01);
-        Rectangle rect2 = new Rectangle(100,200);
+        Rectangle rect2 = new Rectangle(50,100);
         rect2.setFill(new ImagePattern(tree));
         rect2.setRotationAxis(Rotate.Y_AXIS);
         rect2.setRotate(60);
-        Rectangle rect3 = new Rectangle(100,200);
+        Rectangle rect3 = new Rectangle(50,100);
         rect3.setFill(new ImagePattern(tree));
         rect3.setRotationAxis(Rotate.Y_AXIS);
         rect3.setRotate(120);
 
         Group newTree = new Group(rect1, rect2, rect3);
-        newTree.setTranslateZ((200 * Math.random()) - 100);
-        newTree.setTranslateX((200 * Math.random()) - 100);
+        newTree.setTranslateZ((int)(199 * Math.random()) - 100);
+        newTree.setTranslateX((int)(199 * Math.random()) - 100);
         return newTree;
     }
 
+    /**
+     * Set up the camera used in the scene.
+     * @return the finished Camera
+     */
     private final Camera setUpCamera() {
         PerspectiveCamera camera = new PerspectiveCamera(true);
 
@@ -122,6 +134,9 @@ public class Controller {
         return camera;
     }
 
+    /**
+     * Add KeyHandlers to the scene to control it.
+     */
     private final void addKeyHandlers() {
         scene.setOnKeyPressed(event -> {
             switch(event.getCode()) {
@@ -144,6 +159,9 @@ public class Controller {
         });
     }
 
+    /**
+     * Add MouseHandlers to the scene to control the camera with the mouse.
+     */
     private final void addMouseHandlers() {
         scene.setOnMousePressed(event -> {
             mouseXCurr = event.getSceneX();

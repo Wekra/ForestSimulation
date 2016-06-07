@@ -29,35 +29,27 @@ public class Main extends Application {
             throw new RuntimeException("ERROR: common conditional SCENE3D is not supported");
         }
 
-        // Near
+//        Button button = new Button("Display Rectangles");
+//        button.addEventHandler(MouseEvent.MOUSE_CLICKED, (mouseEvent) -> controller.buttonClicked());
+//        button.setFocusTraversable(false);
 
-        Button button = new Button("Display Rectangles");
-        button.addEventHandler(MouseEvent.MOUSE_CLICKED, (mouseEvent) -> controller.buttonClicked());
-        button.setFocusTraversable(false);
-
-//        final Box floor = new Box(200, 200, 1);
-//        floor.setTranslateX(200);
-//        floor.setTranslateY(200);
-//        floor.setTranslateZ(50);
-//        floor.setMaterial(new PhongMaterial(Color.SANDYBROWN));
-
-
+        //create a new material to use on the floor
         PhongMaterial material = new PhongMaterial(Color.GREEN);
 
-        Box floor2 = new Box(200, 0.1, 200);
-        floor2.setMaterial(material);
+        //create the floor
+        Box floor = new Box(200, 0.1, 200);
+        floor.setMaterial(material);
 //        floor2.setTranslateX(220);
-        floor2.setTranslateY(200);
+        floor.setTranslateY(100);
 //        floor2.setTranslateZ(60);
 
-        PointLight light = new PointLight(Color.WHITE);
+        //create a white light to light the scene
+        PointLight light = new PointLight(Color.WHITESMOKE);
         light.setTranslateX(0.0);
         light.setTranslateY(-400.0);
         light.setTranslateZ(-300.0);
 
-        primaryStage.setTitle("Forest Simulation");
-
-        Group root = new Group(floor2, light);
+        Group root = new Group(floor, light);
 
         Scene scene = new Scene(root, 600, 600);
 
@@ -66,10 +58,10 @@ public class Main extends Application {
 
         scene.setOnKeyReleased(e -> controller.addTree(e));
 
-
 //        scene.setCamera(new PerspectiveCamera());
-        primaryStage.setScene(scene);
 
+        primaryStage.setTitle("Forest Simulation");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
