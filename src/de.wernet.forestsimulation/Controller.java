@@ -30,6 +30,9 @@ public class Controller {
     private double mouseXDelta;
     private double mouseYDelta;
 
+    Image tree;
+    ImagePattern treePattern;
+
     private Rotate cameraRotateX = new Rotate(-20.0, Rotate.X_AXIS);
     private Rotate cameraRotateY = new Rotate(-20.0, Rotate.Y_AXIS);
     private Translate cameraTranslate = new Translate(100.0, 100.0, -500.0);
@@ -37,6 +40,9 @@ public class Controller {
     public Controller(Scene scene){
         this.scene = scene;
         scene.setCamera(setUpCamera());
+
+        tree = new Image("birch.png");
+        treePattern = new ImagePattern(tree);
 
         addKeyHandlers();
         addMouseHandlers();
@@ -96,18 +102,18 @@ public class Controller {
      */
     private Group createTree(){
 
-        Image tree = new Image("birch.png");
+
 
         Rectangle rect1 = new Rectangle(50,100);
-        rect1.setFill(new ImagePattern(tree));
+        rect1.setFill(treePattern);
         rect1.setRotationAxis(Rotate.Y_AXIS);
-        rect1.setRotate(0.01);
+//        rect1.setRotate(0);
         Rectangle rect2 = new Rectangle(50,100);
-        rect2.setFill(new ImagePattern(tree));
+        rect2.setFill(treePattern);
         rect2.setRotationAxis(Rotate.Y_AXIS);
         rect2.setRotate(60);
         Rectangle rect3 = new Rectangle(50,100);
-        rect3.setFill(new ImagePattern(tree));
+        rect3.setFill(treePattern);
         rect3.setRotationAxis(Rotate.Y_AXIS);
         rect3.setRotate(120);
 
