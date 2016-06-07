@@ -12,19 +12,26 @@ import javafx.scene.transform.Rotate;
 
 public class ObjectCollection {
 	
+	Image tree;
+	ImagePattern treePattern;
+	
+	public ObjectCollection(){
+		tree = new Image("/res/birch.png");
+		treePattern = new ImagePattern(tree);
+	}
+	
 	public Group treeBirch(){
-		Image tree = new Image("/res/birch.png");
-
-        Rectangle rect1 = new Rectangle(100,200);
-        rect1.setFill(new ImagePattern(tree));
+		
+        Rectangle rect1 = new Rectangle(50,100);
+        rect1.setFill(treePattern);
         rect1.setRotationAxis(Rotate.Y_AXIS);
         rect1.setRotate(1);
-        Rectangle rect2 = new Rectangle(100,200);
-        rect2.setFill(new ImagePattern(tree));
+        Rectangle rect2 = new Rectangle(50,100);
+        rect2.setFill(treePattern);
         rect2.setRotationAxis(Rotate.Y_AXIS);
         rect2.setRotate(60);
-        Rectangle rect3 = new Rectangle(100,200);
-        rect3.setFill(new ImagePattern(tree));
+        Rectangle rect3 = new Rectangle(50,100);
+        rect3.setFill(treePattern);
         rect3.setRotationAxis(Rotate.Y_AXIS);
         rect3.setRotate(120);
 
@@ -38,5 +45,15 @@ public class ObjectCollection {
 	    testBox.setDrawMode(DrawMode.LINE);
 	    
 	    return testBox;
+	}
+	
+	public Box floor(){
+//		if(floor != null){
+//			return floor;
+//		}
+		final Box floor = new Box(200, 1, 200);
+		floor.setMaterial(new PhongMaterial(Color.SANDYBROWN));
+		floor.setTranslateY(100);
+  return floor;
 	}
 }

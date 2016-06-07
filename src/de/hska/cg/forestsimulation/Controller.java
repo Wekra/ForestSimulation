@@ -44,6 +44,7 @@ public class Controller {
         this.cameraRotateY = camera.getCameraRotateY();
         this.cameraTranslate = camera.getCameraTranslate();
         this.objects = new ObjectCollection();
+        ((Group)(this.scene.getRoot())).getChildren().add(objects.floor());
 
         addKeyPressedHandlers();
         addKeyReleasedHandlers();
@@ -52,46 +53,13 @@ public class Controller {
     }
 
 
-//    public void buttonClicked() {
-//        Rectangle red = new Rectangle(300, 300, Color.RED);
-//        red.setTranslateX(-50);
-//        red.setTranslateY(-50);
-//        red.setTranslateZ(1);
-//
-//        // Far
-//        Rectangle green = new Rectangle(300, 300, Color.GREEN);
-//        green.setTranslateX(100);
-//        green.setTranslateY(0);
-//        green.setTranslateZ(200);
-//
-//        // Mid
-//        Rectangle blue = new Rectangle(300, 300, Color.BLUE);
-//        blue.setTranslateX(0);
-//        blue.setTranslateY(100);
-//        blue.setTranslateZ(100);
-//
-//        Group rotationGroup = new Group(red, green, blue);
-//        rotationGroup.setTranslateX(125);
-//        rotationGroup.setTranslateY(125);
-//        rotationGroup.setRotationAxis(Rotate.Y_AXIS);
-//
-//        Slider s = new Slider(0, 360, 0);
-//        s.setBlockIncrement(1);
-//        s.setTranslateX(225);
-//        s.setTranslateY(575);
-//        rotationGroup.rotateProperty().bind(s.valueProperty());
-//
-//        Parent parent = scene.getRoot();
-//        Group group = (Group) parent;
-//        group.getChildren().addAll(rotationGroup, s);
-//    }
 
     
     private Group createTree(){
 
     	Group tree = objects.treeBirch();
-    	tree.setTranslateZ(200 * Math.random());
-        tree.setTranslateX(200 * Math.random());
+    	tree.setTranslateZ((200 * Math.random())-100);
+        tree.setTranslateX((200 * Math.random())-125);
         return tree;
     }
     
