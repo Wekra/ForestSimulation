@@ -107,7 +107,7 @@ public class Controller {
         Rectangle rect1 = new Rectangle(50,100);
         rect1.setFill(treePattern);
         rect1.setRotationAxis(Rotate.Y_AXIS);
-//        rect1.setRotate(0);
+        rect1.setRotate(0.01);
         Rectangle rect2 = new Rectangle(50,100);
         rect2.setFill(treePattern);
         rect2.setRotationAxis(Rotate.Y_AXIS);
@@ -118,8 +118,8 @@ public class Controller {
         rect3.setRotate(120);
 
         Group newTree = new Group(rect1, rect2, rect3);
-        newTree.setTranslateZ((int)(199 * Math.random()) - 100);
-        newTree.setTranslateX((int)(199 * Math.random()) - 100);
+        newTree.setTranslateZ((int)(200 * Math.random()) - 100);
+        newTree.setTranslateX((int)(200 * Math.random()) - 125);
         return newTree;
     }
 
