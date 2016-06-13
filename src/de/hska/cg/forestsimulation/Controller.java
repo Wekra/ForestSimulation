@@ -1,26 +1,14 @@
 package de.hska.cg.forestsimulation;
 
-import javafx.event.ActionEvent;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
-import javafx.scene.Camera;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.transform.Translate;
 
 public class Controller {
 
     private Scene scene;
-    
+
     private SceneCamera camera;
     private ObjectCollection objects;
 
@@ -35,54 +23,50 @@ public class Controller {
 
     private Rotate cameraRotateX;
     private Rotate cameraRotateY;
+
     private Translate cameraTranslate;
 
-    public Controller(Scene scene, SceneCamera camera){
+    public Controller(Scene scene, SceneCamera camera) {
         this.scene = scene;
         this.camera = camera;
         this.cameraRotateX = camera.getCameraRotateX();
         this.cameraRotateY = camera.getCameraRotateY();
         this.cameraTranslate = camera.getCameraTranslate();
         this.objects = new ObjectCollection();
-        ((Group)(this.scene.getRoot())).getChildren().add(objects.floor());
+        ((Group) (this.scene.getRoot())).getChildren().add(objects.floor());
 
         addKeyPressedHandlers();
         addKeyReleasedHandlers();
         addMouseHandlers();
-        
     }
 
 
-
-    
-    private Group createTree(){
-
-    	Group tree = objects.treeBirch();
-    	tree.setTranslateZ((200 * Math.random())-100);
-        tree.setTranslateX((200 * Math.random())-125);
+    private Group createTree() {
+        Group tree = objects.treeBirch();
+        tree.setTranslateZ((200 * Math.random()) - 100);
+        tree.setTranslateX((200 * Math.random()) - 125);
         return tree;
     }
-    
+
     public void addKeyReleasedHandlers() {
-    	Group group = (Group) scene.getRoot();
-    	scene.setOnKeyReleased(e -> {
-    		switch(e.getCode()){
-    		case SPACE: 
-    			System.out.println("Leertaste");
-                group.getChildren().add(createTree());
-                break;
-    		case COMMA: 
-    			System.out.println("comma");
-                group.getChildren().add(objects.box());
-            default:
-    		}
-    	});
-            
+        Group group = (Group) scene.getRoot();
+        scene.setOnKeyReleased(e -> {
+            switch (e.getCode()) {
+                case SPACE:
+                    System.out.println("Leertaste");
+                    group.getChildren().add(createTree());
+                    break;
+                case COMMA:  //Not really useful...still here to demonstrate functioning keyHandlers
+                    System.out.println("comma");
+                    group.getChildren().add(objects.box());
+                default:
+            }
+        });
     }
-    
+
     private final void addKeyPressedHandlers() {
         scene.setOnKeyPressed(event -> {
-            switch(event.getCode()) {
+            switch (event.getCode()) {
                 case RIGHT:
                     cameraRotateY.setAngle(cameraRotateY.getAngle() + ROTATE_TICK);
                     break;
@@ -127,13 +111,3 @@ public class Controller {
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
